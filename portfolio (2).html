@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Joab Ndego — Web Developer & Digital Solutions | Nairobi, Kenya</title>
+<meta name="description" content="Full-stack web developer based in Parklands , Nairobi. Founder of Webazi Digital Solutions. Specialising in M-Pesa integration, SEO, and Kenya-focused digital products."/>
+<meta property="og:title" content="Joab Ndego — Web Developer, Nairobi Kenya"/>
+<meta property="og:description" content="Portfolio of Joab Irungu Ndego — founder of Webazi Digital Solutions. Web design, SEO, M-Pesa integration and digital marketing."/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+/* ── TOKENS ── */
+:root{
+  --ink:#0a0f1e;
+  --ink2:#111827;
+  --surface:#161d30;
+  --card:#1c2640;
+  --orange:#FF6B00;
+  --orange2:#FF9A3C;
+  --teal:#00C8A0;
+  --white:#fff;
+  --muted:rgba(255,255,255,.5);
+  --border:rgba(255,255,255,.07);
+  --r:20px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Space Grotesk',sans-serif;background:var(--ink);color:var(--white);overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;width:100%;z-index:999;padding:18px 6%;display:flex;justify-content:space-between;align-items:center;background:rgba(10,15,30,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--white);text-decoration:none;letter-spacing:-.5px;}
+.nav-logo span{color:var(--orange);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:500;transition:.2s;}
+.nav-links a:hover{color:var(--orange);}
+.nav-cta{background:var(--orange);color:#fff!important;padding:9px 22px;border-radius:25px;font-weight:700!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{width:22px;height:2px;background:var(--orange);border-radius:2px;}
+.mob-menu{display:none;position:fixed;inset:0;background:var(--ink);z-index:998;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
+.mob-menu.open{display:flex;}
+.mob-menu a{font-size:1.5rem;font-weight:700;color:var(--white);text-decoration:none;}
+.mob-close{position:absolute;top:24px;right:24px;font-size:1.4rem;color:var(--muted);cursor:pointer;background:none;border:none;}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 6% 80px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(255,107,0,.08),transparent);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+.hero-content{position:relative;z-index:1;max-width:780px;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,200,160,.3);color:var(--teal);padding:6px 16px;border-radius:25px;font-size:.75rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:28px;}
+.hero-tag .dot{width:7px;height:7px;background:var(--teal);border-radius:50%;animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,6vw,4.2rem);font-weight:800;line-height:1.05;letter-spacing:-1px;margin-bottom:22px;}
+.hero h1 .line2{color:var(--orange);}
+.hero p{color:var(--muted);font-size:1.05rem;line-height:1.75;max-width:540px;margin-bottom:40px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-solid{background:linear-gradient(135deg,var(--orange),var(--orange2));color:#fff;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:.92rem;transition:.3s;box-shadow:0 8px 24px rgba(255,107,0,.3);}
+.btn-solid:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(255,107,0,.45);}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.2);color:var(--white);padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:600;font-size:.92rem;transition:.3s;}
+.btn-ghost:hover{border-color:var(--orange);color:var(--orange);}
+.hero-stats{display:flex;gap:40px;margin-top:56px;padding-top:40px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.hstat h3{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;color:var(--orange);}
+.hstat p{color:var(--muted);font-size:.75rem;letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+
+/* ── SECTIONS ── */
+.sec{padding:100px 6%;}
+.sec-alt{background:var(--ink2);}
+.label{display:inline-block;color:var(--orange);font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;}
+.sec-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;line-height:1.15;letter-spacing:-.5px;margin-bottom:14px;}
+.sec-sub{color:var(--muted);font-size:.95rem;line-height:1.75;max-width:560px;}
+.center{text-align:center;margin:0 auto;}
+
+/* ── SKILLS ── */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:48px;}
+.skill{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 18px;text-align:center;transition:.3s;}
+.skill:hover{border-color:var(--orange);transform:translateY(-3px);}
+.skill i{font-size:1.6rem;color:var(--orange);margin-bottom:12px;}
+.skill h4{font-size:.88rem;font-weight:600;}
+.skill p{color:var(--muted);font-size:.75rem;margin-top:4px;}
+
+/* ── PROJECTS ── */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;margin-top:56px;}
+.proj{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:.3s;display:flex;flex-direction:column;}
+.proj:hover{transform:translateY(-5px);box-shadow:0 20px 52px rgba(0,0,0,.4);border-color:rgba(255,107,0,.2);}
+.proj-header{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.proj-header svg{width:100%;height:100%;}
+.proj-tag{position:absolute;top:14px;left:14px;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);color:var(--orange);font-size:.68rem;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;border:1px solid rgba(255,107,0,.3);}
+.proj-body{padding:24px;flex:1;display:flex;flex-direction:column;}
+.proj-body h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:8px;}
+.proj-body p{color:var(--muted);font-size:.84rem;line-height:1.65;flex:1;}
+.proj-tech{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px;}
+.tech-tag{background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.15);color:var(--orange);font-size:.7rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.proj-links{display:flex;gap:10px;margin-top:18px;padding-top:16px;border-top:1px solid var(--border);}
+.proj-link{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:700;text-decoration:none;color:var(--white);transition:.2s;}
+.proj-link:hover{color:var(--orange);}
+.proj-link i{font-size:.75rem;}
+
+/* ── EXPERIENCE ── */
+.timeline{max-width:700px;margin:56px auto 0;position:relative;}
+.timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--orange),var(--teal));}
+.titem{padding-left:56px;margin-bottom:40px;position:relative;}
+.titem::before{content:'';position:absolute;left:12px;top:4px;width:18px;height:18px;border-radius:50%;background:var(--orange);border:3px solid var(--ink2);}
+.titem h4{font-weight:700;font-size:.97rem;margin-bottom:4px;}
+.titem .ttag{color:var(--orange);font-size:.78rem;font-weight:600;margin-bottom:8px;}
+.titem p{color:var(--muted);font-size:.86rem;line-height:1.65;}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;margin-top:56px;align-items:start;}
+.contact-info p{color:var(--muted);font-size:.93rem;line-height:1.75;margin-bottom:32px;}
+.ci{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
+.ci-icon{width:44px;height:44px;background:rgba(255,107,0,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:.95rem;flex-shrink:0;}
+.ci h4{font-size:.83rem;font-weight:700;margin-bottom:2px;}
+.ci a{color:var(--muted);font-size:.82rem;text-decoration:none;transition:.2s;}
+.ci a:hover{color:var(--orange);}
+.contact-form{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:36px;}
+.fg{margin-bottom:16px;}
+.fg label{display:block;font-size:.77rem;font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.5px;text-transform:uppercase;}
+.fg input,.fg select,.fg textarea{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;background:var(--surface);color:var(--white);font-family:'Space Grotesk',sans-serif;font-size:.88rem;outline:none;transition:.2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--orange);}
+.fg textarea{height:110px;resize:none;}
+.btn-send{width:100%;padding:14px;border-radius:25px;border:none;background:linear-gradient(135deg,var(--orange),var(--orange2));color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:.3s;}
+.btn-send:hover{opacity:.9;}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);border-top:1px solid var(--border);padding:40px 6%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+footer p{color:var(--muted);font-size:.82rem;}
+.footer-socs{display:flex;gap:12px;}
+.fsoc{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-size:.82rem;transition:.2s;}
+.fsoc:hover{background:var(--orange);border-color:var(--orange);color:#fff;}
+
+/* ── WA FLOAT ── */
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:998;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;text-decoration:none;box-shadow:0 6px 24px rgba(37,211,102,.4);animation:wpulse 2.5s infinite;}
+@keyframes wpulse{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.4);}50%{box-shadow:0 6px 40px rgba(37,211,102,.7);}}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .contact-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:24px;}
+  .sec{padding:70px 5%;}
+}
+@media(max-width:500px){
+  .projects-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Joab<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMob()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="toggleMob()"><i class="fas fa-times"></i></button>
+  <a href="#about" onclick="toggleMob()">About</a>
+  <a href="#skills" onclick="toggleMob()">Skills</a>
+  <a href="#projects" onclick="toggleMob()">Projects</a>
+  <a href="#experience" onclick="toggleMob()">Experience</a>
+  <a href="#contact" onclick="toggleMob()">Hire Me</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag"><span class="dot"></span> Available for Projects · Parklands , Nairobi</div>
+    <h1>
+      Full-Stack Developer<br/>
+      <span class="line2">& Digital Strategist</span>
+    </h1>
+    <p>I'm <strong style="color:#fff;">Joab Irungu Ndego</strong> — founder of Webazi Digital Solutions. I build fast, beautiful, and conversion-focused digital products for Kenyan businesses. From M-Pesa-integrated e-commerce to SEO-optimised brand websites.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-solid">View My Work</a>
+      <a href="#contact" class="btn-ghost">Let's Work Together</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><h3>50+</h3><p>Projects Delivered</p></div>
+      <div class="hstat"><h3>5+</h3><p>Years Experience</p></div>
+      <div class="hstat"><h3>98%</h3><p>Client Satisfaction</p></div>
+      <div class="hstat"><h3>10</h3><p>Days Avg. Launch</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec sec-alt" id="about">
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;" class="about-wrap">
+    <div>
+      <span class="label">About Me</span>
+      <h2 class="sec-title">Building the Web,<br/>One Business at a Time</h2>
+      <p style="color:var(--muted);line-height:1.8;margin-bottom:18px;font-size:.95rem;">I'm a full-stack web developer and digital entrepreneur based in Parklands , Nairobi. I founded <strong style="color:#fff;">Webazi Digital Solutions</strong> to bring world-class digital services to Kenyan SMEs at honest, local prices.</p>
+      <p style="color:var(--muted);line-height:1.8;margin-bottom:28px;font-size:.95rem;">My work spans custom websites, M-Pesa Daraja API integrations, SEO, social media management, and graphic design. I work primarily from Desktop (Visual code) I deploy via Netlify, Vercel, Hostinger ,Go Daddy and GitHub — proving that great work  requires real skills and determination.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="#contact" class="btn-solid">Work With Me</a>
+        <a href="https://linkedin.com/in/joab-ndego-488ab940b" target="_blank" class="btn-ghost">LinkedIn Profile</a>
+      </div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:32px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="background:var(--surface);border-radius:14px;padding:20px;text-align:center;"><i class="fas fa-code" style="font-size:1.6rem;color:var(--orange);margin-bottom:10px;display:block;"></i><h4 style="font-size:.9rem;font-weight:700;">Web Dev</h4><p style="color:var(--muted);font-size:.78rem;margin-top:4px;">HTML, CSS, JS, Node.js</p></div>
+        <div style="background:var(--surface);border-radius:14px;padding:20px;text-align:center;"><i class="fas fa-credit-card" style="font-size:1.6rem;color:var(--teal);margin-bottom:10px;display:block;"></i><h4 style="font-size:.9rem;font-weight:700;">M-Pesa API</h4><p style="color:var(--muted);font-size:.78rem;margin-top:4px;">Daraja STK Push</p></div>
+        <div style="background:var(--surface);border-radius:14px;padding:20px;text-align:center;"><i class="fas fa-search" style="font-size:1.6rem;color:var(--orange);margin-bottom:10px;display:block;"></i><h4 style="font-size:.9rem;font-weight:700;">SEO</h4><p style="color:var(--muted);font-size:.78rem;margin-top:4px;">On-page & Technical</p></div>
+        <div style="background:var(--surface);border-radius:14px;padding:20px;text-align:center;"><i class="fas fa-paint-brush" style="font-size:1.6rem;color:var(--teal);margin-bottom:10px;display:block;"></i><h4 style="font-size:.9rem;font-weight:700;">Design</h4><p style="color:var(--muted);font-size:.78rem;margin-top:4px;">Branding & Graphics</p></div>
+      </div>
+      <div style="margin-top:20px;background:var(--surface);border-radius:14px;padding:20px;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:.82rem;"><span>Kenya-based Client Focus</span><span style="color:var(--orange);font-weight:700;">100%</span></div>
+        <div style="background:var(--border);border-radius:10px;height:6px;"><div style="background:linear-gradient(90deg,var(--orange),var(--orange2));height:100%;border-radius:10px;width:100%;"></div></div>
+        <div style="display:flex;justify-content:space-between;margin:14px 0 10px;font-size:.82rem;"><span>M-Pesa Integration</span><span style="color:var(--teal);font-weight:700;">Expert</span></div>
+        <div style="background:var(--border);border-radius:10px;height:6px;"><div style="background:linear-gradient(90deg,var(--teal),#00e6b8);height:100%;border-radius:10px;width:92%;"></div></div>
+        <div style="display:flex;justify-content:space-between;margin:14px 0 10px;font-size:.82rem;"><span>Frontend Development</span><span style="color:var(--orange);font-weight:700;">95%</span></div>
+        <div style="background:var(--border);border-radius:10px;height:6px;"><div style="background:linear-gradient(90deg,var(--orange),var(--orange2));height:100%;border-radius:10px;width:95%;"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="sec" id="skills">
+  <div class="center">
+    <span class="label">Tech Stack</span>
+    <h2 class="sec-title">Skills & Technologies</h2>
+    <p class="sec-sub">Tools and technologies I use to build production-ready digital products.</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill reveal"><i class="fab fa-html5"></i><h4>HTML5</h4><p>Semantic, accessible</p></div>
+    <div class="skill reveal"><i class="fab fa-css3-alt"></i><h4>CSS3</h4><p>Animations, responsive</p></div>
+    <div class="skill reveal"><i class="fab fa-js"></i><h4>JavaScript</h4><p>ES6+, async/await</p></div>
+    <div class="skill reveal"><i class="fab fa-node-js"></i><h4>Node.js</h4><p>Express, REST APIs</p></div>
+    <div class="skill reveal"><i class="fas fa-database"></i><h4>PostgreSQL</h4><p>Schema design, queries</p></div>
+    <div class="skill reveal"><i class="fab fa-react"></i><h4>React</h4><p>Hooks, SPA building</p></div>
+    <div class="skill reveal"><i class="fas fa-mobile-alt"></i><h4>M-Pesa Daraja</h4><p>STK Push, C2B</p></div>
+    <div class="skill reveal"><i class="fab fa-github"></i><h4>GitHub</h4><p>Version control, CI/CD</p></div>
+    <div class="skill reveal"><i class="fas fa-server"></i><h4>Netlify / Vercel</h4><p>Deploy & hosting</p></div>
+    <div class="skill reveal"><i class="fas fa-search"></i><h4>SEO</h4><p>On-page, structured data</p></div>
+    <div class="skill reveal"><i class="fas fa-paint-brush"></i><h4>Graphic Design</h4><p>Pillow, SVG, branding</p></div>
+    <div class="skill reveal"><i class="fab fa-python"></i><h4>Python</h4><p>Scripting, automation</p></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="sec sec-alt" id="projects">
+  <div class="center">
+    <span class="label">Portfolio</span>
+    <h2 class="sec-title">Selected Projects</h2>
+    <p class="sec-sub">Real products built and deployed for Kenyan businesses and organisations.</p>
+  </div>
+  <div class="projects-grid">
+
+    <!-- Webazi Digital Solutions -->
+    <div class="proj reveal">
+      <div class="proj-header" style="background:linear-gradient(135deg,#0D1B3E,#1a2d5a);">
+        <svg viewBox="0 0 400 200" fill="none"><rect width="400" height="200" fill="none"/><rect x="20" y="60" width="8" height="80" rx="4" fill="#FF6B00"/><rect x="20" y="60" width="32" height="8" rx="4" fill="#FF6B00"/><rect x="20" y="132" width="32" height="8" rx="4" fill="#FF6B00"/><rect x="84" y="60" width="8" height="80" rx="4" fill="#FF6B00"/><rect x="52" y="60" width="40" height="8" rx="4" fill="#FF6B00"/><rect x="52" y="132" width="40" height="8" rx="4" fill="#FF6B00"/><polyline points="34,76 34,140 56,108 78,140 78,76" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><text x="110" y="95" font-family="Arial Black" font-weight="900" font-size="32" fill="white" letter-spacing="2">WEBAZI</text><rect x="110" y="100" width="170" height="4" rx="2" fill="#FF6B00"/><text x="111" y="124" font-family="Arial" font-size="12" letter-spacing="4" fill="#FF6B00" font-weight="700">DIGITAL SOLUTIONS</text><text x="111" y="145" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.4)" letter-spacing="1">Websites · SEO · Social Media · Graphics</text></svg>
+        <span class="proj-tag">Agency Website</span>
+      </div>
+      <div class="proj-body">
+        <h3>Webazi Digital Solutions</h3>
+        <p>Full 11-page SPA with dark/light mode, project tracker, admin panel, pricing calculator, M-Pesa integration, WhatsApp automation, exit-intent popup, animated counters, real blog posts and SEO structured data. Complete with admin backend to manage client projects.</p>
+        <div class="proj-tech"><span class="tech-tag">HTML/CSS/JS</span><span class="tech-tag">M-Pesa</span><span class="tech-tag">LocalStorage</span><span class="tech-tag">SEO</span><span class="tech-tag">Vercel</span></div>
+        <div class="proj-links">
+          <a href="https://webazidigitalsolutions.vercel.app" target="_blank" class="proj-link"><i class="fas fa-external-link-alt"></i> Live Site</a>
+          <a href="https://github.com/joab8291-glitch/Webazidigitalsolutions" target="_blank" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MoneyMind -->
+    <div class="proj reveal">
+      <div class="proj-header" style="background:linear-gradient(135deg,#0a1f0a,#0f3020);">
+        <svg viewBox="0 0 400 200" fill="none"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial Black" font-size="52" font-weight="900" fill="rgba(0,200,83,0.15)">KES</text><rect x="60" y="130" width="30" height="50" rx="4" fill="#00C853" opacity=".8"/><rect x="100" y="110" width="30" height="70" rx="4" fill="#00C853"/><rect x="140" y="90" width="30" height="90" rx="4" fill="#00C853"/><rect x="180" y="70" width="30" height="110" rx="4" fill="#00C853"/><rect x="220" y="50" width="30" height="130" rx="4" fill="#00C853"/><polyline points="75,130 115,110 155,90 195,70 235,50" fill="none" stroke="#FFD600" stroke-width="3" stroke-dasharray="6,3"/><text x="50" y="40" font-family="Arial Black" font-weight="900" font-size="22" fill="white">MoneyMind KES</text><text x="50" y="58" font-family="Arial" font-size="10" fill="rgba(255,255,255,0.5)">Personal Budget Tracker</text></svg>
+        <span class="proj-tag">FinTech PWA</span>
+      </div>
+      <div class="proj-body">
+        <h3>MoneyMind KES Budget Tracker</h3>
+        <p>Kenya-focused personal finance PWA with M-Pesa & Airtel Money SMS parsing, JWT authentication, email verification, canvas charts, AI chat via Anthropic API, Node.js/Express/PostgreSQL backend and full offline support.</p>
+        <div class="proj-tech"><span class="tech-tag">Node.js</span><span class="tech-tag">PostgreSQL</span><span class="tech-tag">JWT</span><span class="tech-tag">PWA</span><span class="tech-tag">Anthropic API</span><span class="tech-tag">M-Pesa</span></div>
+        <div class="proj-links">
+          <a href="https://wa.me/254729914983?text=Tell me about MoneyMind" target="_blank" class="proj-link"><i class="fas fa-info-circle"></i> Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- InstaKredo -->
+    <div class="proj reveal">
+      <div class="proj-header" style="background:linear-gradient(135deg,#0a0a1f,#1a0a30);">
+        <svg viewBox="0 0 400 200" fill="none"><circle cx="200" cy="100" r="70" fill="none" stroke="rgba(147,51,234,0.2)" stroke-width="2"/><circle cx="200" cy="100" r="50" fill="none" stroke="rgba(147,51,234,0.3)" stroke-width="2"/><circle cx="200" cy="100" r="30" fill="rgba(147,51,234,0.15)"/><text x="50%" y="95" dominant-baseline="middle" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="16" fill="white">InstaKredo</text><text x="50%" y="115" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="10" fill="rgba(255,255,255,0.5)">Airtime Reselling Platform</text><text x="50" y="40" font-family="Arial" font-size="9" fill="rgba(147,51,234,0.8)" letter-spacing="2">PACKSON VENTURES</text></svg>
+        <span class="proj-tag">E-Commerce</span>
+      </div>
+      <div class="proj-body">
+        <h3>InstaKredo — Airtime Reselling Platform</h3>
+        <p>Rebranded from SmartKredo for client Packson Ventures. Frontend with dark "Premium Dark" theme, M-Pesa Daraja STK Push backend, Africa's Talking SMS integration, hero section, Open Graph preview cards and logo design.</p>
+        <div class="proj-tech"><span class="tech-tag">HTML/CSS/JS</span><span class="tech-tag">Daraja API</span><span class="tech-tag">Africa's Talking</span><span class="tech-tag">Netlify</span></div>
+        <div class="proj-links">
+          <a href="https://wa.me/254729914983?text=Tell me about InstaKredo" target="_blank" class="proj-link"><i class="fas fa-info-circle"></i> Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Joab Airtime Hub -->
+    <div class="proj reveal">
+      <div class="proj-header" style="background:linear-gradient(135deg,#1a0a00,#2d1800);">
+        <svg viewBox="0 0 400 200" fill="none"><rect x="120" y="40" width="160" height="120" rx="12" fill="rgba(255,107,0,0.1)" stroke="rgba(255,107,0,0.3)" stroke-width="1.5"/><text x="50%" y="85" dominant-baseline="middle" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="14" fill="white">Joab Airtime Hub</text><text x="50%" y="108" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.5)">Safaricom · Airtel · Telkom</text><text x="50%" y="130" dominant-baseline="middle" text-anchor="middle" font-family="Arial Black" font-size="12" fill="#FF6B00">85% Face Value</text><rect x="50" y="155" width="60" height="20" rx="10" fill="rgba(0,200,83,0.2)" stroke="#00C853" stroke-width="1"/><text x="80" y="169" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="9" fill="#00C853">M-Pesa</text><rect x="170" y="155" width="60" height="20" rx="10" fill="rgba(255,107,0,0.2)" stroke="#FF6B00" stroke-width="1"/><text x="200" y="169" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="9" fill="#FF6B00">Till: 9248314</text><rect x="290" y="155" width="60" height="20" rx="10" fill="rgba(0,176,255,0.2)" stroke="#00B0FF" stroke-width="1"/><text x="320" y="169" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="9" fill="#00B0FF">Live</text></svg>
+        <span class="proj-tag">E-Commerce</span>
+      </div>
+      <div class="proj-body">
+        <h3>Joab Airtime Hub</h3>
+        <p>Personal airtime reselling business platform selling Safaricom, Airtel and Telkom airtime at 85% face value. M-Pesa STK Push checkout, Node.js backend on Render, Netlify frontend. M-Pesa Till: 9248314.</p>
+        <div class="proj-tech"><span class="tech-tag">Node.js</span><span class="tech-tag">M-Pesa Daraja</span><span class="tech-tag">Render</span><span class="tech-tag">Netlify</span></div>
+        <div class="proj-links">
+          <a href="https://joabairtimehub.netlify.app" target="_blank" class="proj-link"><i class="fas fa-external-link-alt"></i> Live Site</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sisi Kwa Sisi -->
+    <div class="proj reveal">
+      <div class="proj-header" style="background:linear-gradient(135deg,#001a0a,#003020);">
+        <svg viewBox="0 0 400 200" fill="none"><text x="50%" y="60" dominant-baseline="middle" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="24" fill="white">Sisi Kwa Sisi</text><text x="50%" y="85" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="10" fill="rgba(255,255,255,0.5)" letter-spacing="2">KENYA CROWDFUNDING</text><circle cx="130" cy="130" r="25" fill="rgba(0,200,83,0.15)" stroke="#00C853" stroke-width="1.5"/><circle cx="200" cy="125" r="30" fill="rgba(0,200,83,0.2)" stroke="#00C853" stroke-width="1.5"/><circle cx="270" cy="130" r="25" fill="rgba(0,200,83,0.15)" stroke="#00C853" stroke-width="1.5"/><text x="130" y="134" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="9" fill="#00C853">Health</text><text x="200" y="129" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="9" fill="#00C853">Education</text><text x="270" y="134" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="9" fill="#00C853">Business</text></svg>
+        <span class="proj-tag">Crowdfunding</span>
+      </div>
+      <div class="proj-body">
+        <h3>Sisi Kwa Sisi — Kenya Crowdfunding</h3>
+        <p>Kenya-focused crowdfunding platform modelled on GlobalGiving. Features base64-embedded images for zero CDN dependency, M-Pesa payment instructions, project listings, and a fully responsive mobile-first design.</p>
+        <div class="proj-tech"><span class="tech-tag">HTML/CSS/JS</span><span class="tech-tag">M-Pesa</span><span class="tech-tag">Base64 Images</span><span class="tech-tag">Netlify</span></div>
+        <div class="proj-links">
+          <a href="https://wa.me/254729914983?text=Tell me about Sisi Kwa Sisi" target="_blank" class="proj-link"><i class="fas fa-info-circle"></i> Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ExamGuard Kenya -->
+    <div class="proj reveal">
+      <div class="proj-header" style="background:linear-gradient(135deg,#0a0010,#1a0030);">
+        <svg viewBox="0 0 400 200" fill="none"><rect x="120" y="30" width="160" height="140" rx="10" fill="rgba(147,51,234,0.08)" stroke="rgba(147,51,234,0.25)" stroke-width="1.5"/><text x="50%" y="75" dominant-baseline="middle" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="16" fill="white">ExamGuard</text><text x="50%" y="95" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="10" fill="rgba(147,51,234,0.8)" letter-spacing="1">KENYA</text><rect x="145" y="110" width="110" height="8" rx="4" fill="rgba(147,51,234,0.3)"/><rect x="145" y="124" width="80" height="8" rx="4" fill="rgba(147,51,234,0.2)"/><rect x="145" y="138" width="95" height="8" rx="4" fill="rgba(147,51,234,0.2)"/><circle cx="135" cy="114" r="5" fill="rgba(147,51,234,0.6)"/><circle cx="135" cy="128" r="5" fill="rgba(147,51,234,0.6)"/><circle cx="135" cy="142" r="5" fill="rgba(147,51,234,0.6)"/></svg>
+        <span class="proj-tag">Civic Tech</span>
+      </div>
+      <div class="proj-body">
+        <h3>ExamGuard Kenya</h3>
+        <p>KCSE exam irregularity reporting platform built with Vite + React, deployed via GitHub + Vercel. Allows students and educators to anonymously report exam malpractice with a secure submission workflow.</p>
+        <div class="proj-tech"><span class="tech-tag">React</span><span class="tech-tag">Vite</span><span class="tech-tag">GitHub</span><span class="tech-tag">Vercel</span></div>
+        <div class="proj-links">
+          <a href="https://wa.me/254729914983?text=Tell me about ExamGuard Kenya" target="_blank" class="proj-link"><i class="fas fa-info-circle"></i> Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PathFix Africa -->
+    <div class="proj reveal">
+      <div class="proj-header" style="background:linear-gradient(135deg,#001020,#002040);">
+        <svg viewBox="0 0 400 200" fill="none"><path d="M80,160 Q150,60 200,80 Q250,100 320,40" stroke="rgba(0,176,255,0.4)" stroke-width="3" fill="none" stroke-dasharray="8,4"/><circle cx="80" cy="160" r="8" fill="#00B0FF"/><circle cx="200" cy="80" r="8" fill="#00B0FF"/><circle cx="320" cy="40" r="8" fill="#FF6B00"/><text x="50%" y="140" dominant-baseline="middle" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="20" fill="white">PathFix Africa</text><text x="50%" y="162" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="10" fill="rgba(255,255,255,0.4)" letter-spacing="2">CAREER GUIDANCE</text></svg>
+        <span class="proj-tag">NGO Website</span>
+      </div>
+      <div class="proj-body">
+        <h3>PathFix Africa</h3>
+        <p>Career guidance website for African youth through three design iterations, landing on a light institutional theme with the organisation's actual logo. Fully responsive with programme listings, team section and contact forms.</p>
+        <div class="proj-tech"><span class="tech-tag">HTML/CSS/JS</span><span class="tech-tag">Responsive</span><span class="tech-tag">Netlify</span></div>
+        <div class="proj-links">
+          <a href="https://wa.me/254729914983?text=Tell me about PathFix Africa" target="_blank" class="proj-link"><i class="fas fa-info-circle"></i> Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quote PDF System -->
+    <div class="proj reveal">
+      <div class="proj-header" style="background:linear-gradient(135deg,#1a1000,#2d2000);">
+        <svg viewBox="0 0 400 200" fill="none"><rect x="130" y="25" width="140" height="160" rx="8" fill="rgba(255,214,0,0.05)" stroke="rgba(255,214,0,0.2)" stroke-width="1.5"/><rect x="145" y="50" width="80" height="6" rx="3" fill="rgba(255,214,0,0.5)"/><rect x="145" y="65" width="110" height="4" rx="2" fill="rgba(255,255,255,0.15)"/><rect x="145" y="75" width="90" height="4" rx="2" fill="rgba(255,255,255,0.1)"/><rect x="145" y="95" width="110" height="3" rx="1.5" fill="rgba(255,107,0,0.3)"/><rect x="145" y="105" width="95" height="3" rx="1.5" fill="rgba(255,255,255,0.08)"/><rect x="145" y="115" width="100" height="3" rx="1.5" fill="rgba(255,255,255,0.08)"/><rect x="145" y="150" width="110" height="18" rx="9" fill="rgba(255,107,0,0.2)" stroke="#FF6B00" stroke-width="1"/><text x="200" y="162" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="8" fill="#FF6B00">DOWNLOAD QUOTE</text><text x="56" y="45" font-family="Arial Black" font-size="13" fill="white">Professional</text><text x="56" y="62" font-family="Arial Black" font-size="13" fill="#FFD600">Quote System</text></svg>
+        <span class="proj-tag">Business Tool</span>
+      </div>
+      <div class="proj-body">
+        <h3>Professional PDF Quote Generator</h3>
+        <p>Python/ReportLab-powered branded PDF quote generator for Webazi client proposals. Auto-generates professional quotes with service tables, package deals, timeline breakdowns, T&Cs, and client signature blocks.</p>
+        <div class="proj-tech"><span class="tech-tag">Python</span><span class="tech-tag">ReportLab</span><span class="tech-tag">PDF Generation</span><span class="tech-tag">Branding</span></div>
+        <div class="proj-links">
+          <a href="https://wa.me/254729914983?text=I need a quote system like yours" target="_blank" class="proj-link"><i class="fas fa-info-circle"></i> Get Similar</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="sec" id="experience">
+  <div class="center">
+    <span class="label">Background</span>
+    <h2 class="sec-title">Experience & Education</h2>
+  </div>
+  <div class="timeline">
+    <div class="titem reveal">
+      <h4>Founder & Lead Developer — Webazi Digital Solutions</h4>
+      <div class="ttag">2020 – Present · Parklands , Nairobi</div>
+      <p>Founded and built a full-service digital agency offering web design, SEO, social media management, M-Pesa integration and branding to Kenyan SMEs. Delivered 50+ projects across diverse industries.</p>
+    </div>
+    <div class="titem reveal">
+      <h4>Field Promotions & Customer Service — Airtel Networks Kenya</h4>
+      <div class="ttag">Previous Role · Kenya</div>
+      <p>Handled field promotions, customer onboarding and service delivery for Airtel Kenya, building strong communication and client management skills applied across all freelance work.</p>
+    </div>
+    <div class="titem reveal">
+      <h4>ICT Intern — Kerugoya Level 4 Hospital</h4>
+      <div class="ttag">Internship · Kerugoya, Kenya</div>
+      <p>Provided IT support, system maintenance and data management for a busy public health facility, gaining hands-on experience with enterprise IT environments.</p>
+    </div>
+    <div class="titem reveal">
+      <h4>Diploma in Project Management</h4>
+      <div class="ttag">Nyeri National Polytechnic</div>
+      <p>Studied project planning, resource management, risk assessment and team leadership — fundamentals applied daily in managing client web projects and digital campaigns.</p>
+    </div>
+    <div class="titem reveal">
+      <h4>Studies — JKUAT</h4>
+      <div class="ttag">Jomo Kenyatta University of Agriculture and Technology</div>
+      <p>Further academic exposure in technology and business disciplines i.e Bachelor's degree in Information and Technology, Cyber security.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec sec-alt" id="contact">
+  <div class="center">
+    <span class="label">Get In Touch</span>
+    <h2 class="sec-title">Let's Build Something Great</h2>
+    <p class="sec-sub">Available for freelance projects, collaborations and full-time opportunities across Kenya and remotely.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p>Whether you need a website, M-Pesa integration, SEO boost or a full digital strategy — I'm here to help your business grow online. Reach out on any platform.</p>
+      <div class="ci"><div class="ci-icon"><i class="fab fa-whatsapp"></i></div><div><h4>WhatsApp</h4><a href="https://wa.me/254729914983">+254 729 914 983</a></div></div>
+      <div class="ci"><div class="ci-icon"><i class="fas fa-phone"></i></div><div><h4>Phone</h4><a href="tel:+254729914983">+254 729 914 983</a></div></div>
+      <div class="ci"><div class="ci-icon"><i class="fas fa-envelope"></i></div><div><h4>Email</h4><a href="mailto:joab8291@gmail.com">joab8291@gmail.com</a></div></div>
+      <div class="ci"><div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>Location</h4><a>Parklands , Nairobi, Kenya</a></div></div>
+      <div class="ci"><div class="ci-icon"><i class="fab fa-linkedin"></i></div><div><h4>LinkedIn</h4><a href="https://linkedin.com/in/joab-ndego-488ab940b" target="_blank">Joab Irungu Ndego</a></div></div>
+      <div class="ci"><div class="ci-icon"><i class="fab fa-github"></i></div><div><h4>GitHub</h4><a href="https://github.com/joab8291-glitch" target="_blank">joab8291-glitch</a></div></div>
+    </div>
+    <div class="contact-form">
+      <div class="fg"><label>Full Name</label><input type="text" id="cf-name" placeholder="Your name"/></div>
+      <div class="fg"><label>Email</label><input type="email" id="cf-email" placeholder="your@email.com"/></div>
+      <div class="fg"><label>What do you need?</label>
+        <select id="cf-service">
+          <option>Website Design & Development</option>
+          <option>M-Pesa Integration</option>
+          <option>SEO Optimisation</option>
+          <option>Social Media Management</option>
+          <option>Graphics & Branding</option>
+          <option>Full Digital Package</option>
+          <option>Other / Collaboration</option>
+        </select>
+      </div>
+      <div class="fg"><label>Message</label><textarea id="cf-msg" placeholder="Tell me about your project..."></textarea></div>
+      <button class="btn-send" onclick="sendMsg()">Send via WhatsApp</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Joab Irungu Ndego · Parklands , Nairobi · Built with 🏦 from scratch</p>
+  <div class="footer-socs">
+    <a href="https://wa.me/254729914983" class="fsoc"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://linkedin.com/in/joab-ndego-488ab940b" class="fsoc"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://github.com/joab8291-glitch" class="fsoc"><i class="fab fa-github"></i></a>
+    <a href="mailto:joab8291@gmail.com" class="fsoc"><i class="fas fa-envelope"></i></a>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/254729914983?text=Hi%20Joab!%20I%20saw%20your%20portfolio%20and%20want%20to%20discuss%20a%20project" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+// ── MOBILE MENU ──
+function toggleMob(){document.getElementById('mobMenu').classList.toggle('open');}
+
+// ── SEND MESSAGE ──
+function sendMsg(){
+  const name = document.getElementById('cf-name').value||'there';
+  const email = document.getElementById('cf-email').value||'N/A';
+  const service = document.getElementById('cf-service').value;
+  const msg = document.getElementById('cf-msg').value||'N/A';
+  const text = `Hi Joab! I saw your portfolio.%0A%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0AService: ${encodeURIComponent(service)}%0A%0A${encodeURIComponent(msg)}`;
+  window.open(`https://wa.me/254729914983?text=${text}`,'_blank');
+}
+
+// ── SCROLL REVEAL ──
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible');});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ── SMOOTH NAV ACTIVE STATE ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-100) current=s.id;});
+  navLinks.forEach(a=>{
+    a.style.color = a.getAttribute('href')==='#'+current ? 'var(--orange)' : '';
+  });
+});
+</script>
+</body>
+</html>
