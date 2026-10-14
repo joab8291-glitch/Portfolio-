@@ -86,6 +86,28 @@ h1,h2,h3,p,a,span{overflow-wrap:anywhere}
  section{padding:52px 0}
 }
 
+
+/* Cinematic motion background + true viewport-safe layout */
+html,body{width:100%;max-width:100%;overflow-x:clip}
+.wrap{width:min(1240px,calc(100% - 40px))}
+.hero{min-height:min(850px,calc(100svh - 74px));display:flex;align-items:center;isolation:isolate;padding:clamp(64px,9vh,120px) 0;overflow:hidden;background:radial-gradient(ellipse at 80% 22%,#ff6b0030,transparent 35%),radial-gradient(ellipse at 18% 72%,#00c8a028,transparent 38%),linear-gradient(125deg,#080d19 0%,#101c32 48%,#07111f 100%)}
+.tech-canvas,.hero-video-shade{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.tech-canvas{z-index:-2;opacity:.9}
+.hero-video-shade{z-index:-1;background:linear-gradient(90deg,rgba(5,9,18,.88) 0%,rgba(5,9,18,.68) 52%,rgba(5,9,18,.35) 100%),linear-gradient(0deg,rgba(8,13,25,.7),transparent 50%,rgba(8,13,25,.2))}
+.hero:after{opacity:.5;background-size:64px 64px}
+.hero-content{max-width:900px}
+section:not(.hero){position:relative;isolation:isolate;overflow:hidden}
+section:not(.hero):before{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;background:radial-gradient(ellipse at 4% 15%,rgba(0,200,160,.10),transparent 34%),radial-gradient(ellipse at 95% 78%,rgba(255,107,0,.10),transparent 32%),repeating-linear-gradient(135deg,rgba(255,255,255,.018) 0,rgba(255,255,255,.018) 1px,transparent 1px,transparent 20px)}
+.about,.experience{background:linear-gradient(135deg,#0d1423f2,#101b2bf2,#0b1424f2)}
+#projects{background:radial-gradient(ellipse at 50% 0%,#16263e 0%,#080d19 55%,#0b1423 100%)}
+#contact{background:radial-gradient(ellipse at 80% 15%,#12302f 0%,#0a1220 45%,#080d19 100%)}
+.project{background:linear-gradient(145deg,rgba(24,39,61,.95),rgba(10,17,30,.96))}
+.project-top{background:linear-gradient(135deg,#1c3453,#101b30)}
+.highlight-box,.contact-card,.experience-card{background:linear-gradient(145deg,rgba(23,39,61,.94),rgba(12,20,34,.96))}
+img,video,iframe,canvas,svg{max-width:100%}
+@media(max-width:650px){.wrap{width:calc(100% - 30px)}.hero{min-height:calc(100svh - 74px);padding:58px 0 50px}.hero-video-shade{background:linear-gradient(90deg,rgba(5,9,18,.82),rgba(5,9,18,.62)),linear-gradient(0deg,rgba(8,13,25,.6),transparent)}}
+@media(prefers-reduced-motion:reduce){.tech-canvas{display:none}}
+
 </style>
 </head>
 <body>
@@ -101,6 +123,8 @@ h1,h2,h3,p,a,span{overflow-wrap:anywhere}
 </nav>
 <main>
 <section class="hero" id="home">
+ <canvas id="techCanvas" class="tech-canvas" aria-hidden="true"></canvas>
+ <div class="hero-video-shade" aria-hidden="true"></div>
  <div class="wrap hero-content">
   <div class="eyebrow"><i class="fa-solid fa-circle"></i> FULL-STACK DEVELOPMENT · KENYA</div>
   <h1>Building useful digital products, from <em>idea to API.</em></h1>
@@ -198,6 +222,10 @@ toggle.addEventListener('click',()=>{const open=navLinks.classList.toggle('open'
 navLinks.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{navLinks.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.innerHTML='<i class="fa-solid fa-bars"></i>';}));
 document.querySelectorAll('.filter').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));button.classList.add('active');const filter=button.dataset.filter;document.querySelectorAll('.project').forEach(card=>{card.hidden=filter!=='all'&&!card.dataset.category.split(' ').includes(filter);});}));
 document.getElementById('year').textContent=new Date().getFullYear();
+
+/* Lightweight animated digital-network backdrop: responsive, muted, no external libraries. */
+(()=>{const c=document.getElementById('techCanvas');if(!c)return;const ctx=c.getContext('2d',{alpha:true});if(!ctx)return;let w=0,h=0,dpr=1,points=[],raf=0,paused=false;const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;function resize(){const r=c.getBoundingClientRect();dpr=Math.min(window.devicePixelRatio||1,1.6);w=Math.max(1,r.width);h=Math.max(1,r.height);c.width=Math.round(w*dpr);c.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);const n=Math.max(28,Math.min(95,Math.round(w*h/14500)));points=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.6+.6,phase:Math.random()*Math.PI*2}));draw(true)}function draw(still=false){if(!ctx)return;ctx.clearRect(0,0,w,h);const reach=Math.max(95,Math.min(155,w*.15));for(let i=0;i<points.length;i++){const p=points[i];if(!still&&!paused&&!reduce){p.x+=p.vx;p.y+=p.vy;p.phase+=.01;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1}for(let j=i+1;j<points.length;j++){const q=points[j],dx=p.x-q.x,dy=p.y-q.y,dist=Math.hypot(dx,dy);if(dist<reach){ctx.strokeStyle='rgba(69,190,220,'+((1-dist/reach)*.2)+')';ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke()}}ctx.beginPath();ctx.arc(p.x,p.y,p.r+Math.sin(p.phase)*.25,0,Math.PI*2);ctx.fillStyle='rgba(0,220,190,.7)';ctx.fill();if(i%7===0){ctx.beginPath();ctx.arc(p.x,p.y,p.r*3.2,0,Math.PI*2);ctx.fillStyle='rgba(0,200,160,.045)';ctx.fill()}}if(!still&&!paused&&!reduce)raf=requestAnimationFrame(()=>draw())}const observer=new IntersectionObserver(entries=>{paused=!entries[0].isIntersecting;if(!paused&&!reduce){cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>draw())}else cancelAnimationFrame(raf)});observer.observe(c);window.addEventListener('resize',resize,{passive:true});document.addEventListener('visibilitychange',()=>{paused=document.hidden;if(!paused&&!reduce){cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>draw())}else cancelAnimationFrame(raf)});resize();if(!reduce)raf=requestAnimationFrame(()=>draw())})();
+
 </script>
 </body>
 </html>
