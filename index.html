@@ -57,6 +57,35 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 @media(max-width:950px){.projects{grid-template-columns:repeat(2,minmax(0,1fr))}.about-grid{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}}
 @media(max-width:650px){.nav-links{display:none;position:absolute;top:74px;left:0;right:0;padding:22px 5%;background:#0a0f1e;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:18px}.nav-links.open{display:flex}.nav-cta{text-align:center}.menu-toggle{display:block}.hero{padding:76px 0 58px}.hero-meta{gap:14px;flex-direction:column}.projects,.experience-grid{grid-template-columns:1fr}section{padding:62px 0}.project-top{min-height:125px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+
+/* Responsive fit: keep every section inside the viewport on phones, tablets and desktops. */
+html,body{width:100%;max-width:100%;overflow-x:clip}
+.wrap{width:min(1160px,calc(100% - 32px))}
+img,video,iframe,canvas,svg{max-width:100%}
+.hero-content,.about-grid,.experience-grid,.contact-grid,.projects,.project,.project-body{min-width:0}
+h1,h2,h3,p,a,span{overflow-wrap:anywhere}
+.hero h1{font-size:clamp(2.15rem,7vw,5.6rem);line-height:1.08}
+.hero p,.section-head p,.about-copy p,.project p{max-width:100%}
+.hero-actions{flex-wrap:wrap}
+.hero-actions .button{max-width:100%;white-space:normal;text-align:center}
+.project-tools{max-width:100%}
+.project{height:100%}
+.project-links a{min-width:0}
+.contact-card,.highlight-box{min-width:0}
+@media(max-width:480px){
+ .wrap{width:calc(100% - 28px)}
+ .hero{padding:58px 0 46px}
+ .hero h1{font-size:clamp(2rem,10vw,2.7rem)}
+ .hero p{font-size:1rem}
+ .hero-actions{display:grid;grid-template-columns:1fr}
+ .hero-actions .button{width:100%}
+ .hero-meta{font-size:.82rem}
+ .section-head h2{font-size:clamp(1.8rem,8vw,2.4rem)}
+ .project-body,.contact-card,.highlight-box{padding:18px}
+ .project-links{gap:12px}
+ section{padding:52px 0}
+}
+
 </style>
 </head>
 <body>
